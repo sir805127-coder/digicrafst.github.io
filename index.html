@@ -5,49 +5,97 @@
 <title>Digicrafst</title>
 
 <style>
-body {margin:0;font-family:Arial;background:#f5f5f5;}
+body {
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  background:#0b0f1a;
+  color:white;
+}
+
+/* NAV */
+nav {
+  display:flex;
+  justify-content:space-between;
+  padding:20px;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
+}
+nav h2 {color:#38bdf8;}
+nav a {
+  color:white;
+  margin-left:15px;
+  text-decoration:none;
+}
 
 /* HERO */
 .hero {
-  background: linear-gradient(90deg,#0f5132,#198754);
-  color:white;
-  padding:60px 20px;
+  text-align:center;
+  padding:80px 20px;
 }
-.hero h1 {font-size:36px;}
-.hero p {max-width:500px;}
+.hero h1 {
+  font-size:40px;
+  background:linear-gradient(90deg,#38bdf8,#22c55e);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.hero p {color:#aaa;max-width:500px;margin:auto;}
 .btn {
-  background:#198754;
-  color:white;
-  padding:12px 25px;
-  border-radius:6px;
-  text-decoration:none;
   display:inline-block;
-  margin-top:15px;
+  margin-top:20px;
+  padding:12px 25px;
+  border-radius:8px;
+  background:linear-gradient(90deg,#38bdf8,#22c55e);
+  color:black;
+  text-decoration:none;
+  font-weight:bold;
 }
 
-/* SECTION */
-.section {padding:50px 20px;text-align:center;}
-.cards {display:flex;flex-wrap:wrap;justify-content:center;}
+/* SERVICES */
+.section {
+  padding:60px 20px;
+  text-align:center;
+}
+.cards {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+}
 .card {
-  background:white;
-  margin:10px;
-  padding:20px;
-  border-radius:10px;
-  width:220px;
-  box-shadow:0 0 10px rgba(0,0,0,0.1);
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(15px);
+  margin:15px;
+  padding:25px;
+  border-radius:15px;
+  width:250px;
+  transition:0.3s;
+}
+.card:hover {
+  transform:translateY(-5px);
+  box-shadow:0 0 20px rgba(56,189,248,0.3);
 }
 
 /* ABOUT */
-.about {display:flex;flex-wrap:wrap;align-items:center;}
-.about img {width:300px;border-radius:10px;margin:10px;}
-.about-text {max-width:400px;margin:10px;}
+.about {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+}
+.about img {
+  width:300px;
+  border-radius:15px;
+  margin:15px;
+}
+.about-text {
+  max-width:400px;
+  margin:15px;
+}
 
-/* TESTIMONIAL */
-.testimonial {
-  background:white;
-  padding:20px;
-  margin:10px;
-  border-radius:10px;
+/* FOOTER */
+footer {
+  text-align:center;
+  padding:30px;
+  color:#888;
 }
 </style>
 
@@ -55,38 +103,46 @@ body {margin:0;font-family:Arial;background:#f5f5f5;}
 
 <body>
 
+<!-- NAV -->
+<nav>
+  <h2>Digicrafst</h2>
+  <div>
+    <a href="#">Home</a>
+    <a href="#">Services</a>
+    <a href="#">Contact</a>
+  </div>
+</nav>
+
 <!-- HERO -->
 <div class="hero">
-  <h1>Professional Digital Services Agency</h1>
-  <p>We deliver high-quality solutions for web, app, graphic design, and marketing.</p>
-  <p>✔ Website Development<br>✔ App Development<br>✔ Graphic Design</p>
-  <a class="btn">Get Started</a>
+  <h1>Build Your Digital Brand</h1>
+  <p>We create high-end websites, branding, and design solutions that grow your business.</p>
+  <a class="btn" href="#">Get Started</a>
 </div>
 
 <!-- SERVICES -->
 <div class="section">
   <h2>Our Services</h2>
-  <p>We Turn Ideas into Reality</p>
 
   <div class="cards">
     <div class="card">
-      <h3>Website Development</h3>
-      <p>Custom responsive websites</p>
-    </div>
-
-    <div class="card">
-      <h3>App Development</h3>
-      <p>Mobile apps Android/iOS</p>
+      <h3>Website Design</h3>
+      <p>Modern responsive websites</p>
     </div>
 
     <div class="card">
       <h3>Graphic Design</h3>
-      <p>Logo, branding, creatives</p>
+      <p>Logos, banners, branding</p>
     </div>
 
     <div class="card">
-      <h3>Digital Marketing</h3>
-      <p>SEO & social media growth</p>
+      <h3>UI/UX Design</h3>
+      <p>Clean & user-friendly interfaces</p>
+    </div>
+
+    <div class="card">
+      <h3>Marketing</h3>
+      <p>Grow your online presence</p>
     </div>
   </div>
 </div>
@@ -94,28 +150,17 @@ body {margin:0;font-family:Arial;background:#f5f5f5;}
 <!-- ABOUT -->
 <div class="section about">
   <div class="about-text">
-    <h2>About Us</h2>
-    <p>Digicrafst is a professional digital agency helping businesses grow online.</p>
-    <p>✔ Experienced Team<br>✔ Client Focused<br>✔ Proven Results</p>
+    <h2>About Digicrafst</h2>
+    <p>We are a creative digital team helping brands grow with design and technology.</p>
   </div>
 
   <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
 </div>
 
-<!-- TESTIMONIAL -->
-<div class="section">
-  <h2>What Our Clients Say</h2>
-
-  <div class="testimonial">
-    <p>"Amazing service and fast delivery!"</p>
-    <b>Anil Mehta</b>
-  </div>
-
-  <div class="testimonial">
-    <p>"Highly professional team."</p>
-    <b>Priya Verma</b>
-  </div>
-</div>
+<!-- FOOTER -->
+<footer>
+  © 2026 Digicrafst. All rights reserved.
+</footer>
 
 </body>
 </html>
