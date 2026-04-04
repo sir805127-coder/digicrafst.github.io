@@ -1,56 +1,120 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Digicrafst Demo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digicrafst</title>
+
 <style>
-body {font-family:Arial;background:#020617;color:white;margin:0;text-align:center;}
-.btn {background:#38bdf8;color:black;padding:10px 20px;border-radius:6px;text-decoration:none;display:inline-block;margin:10px;}
-.box {background:#1e293b;padding:20px;margin:15px;border-radius:10px;}
-input, textarea {width:80%;padding:10px;margin:10px;border-radius:5px;border:none;}
+body {margin:0;font-family:Arial;background:#f5f5f5;}
+
+/* HERO */
+.hero {
+  background: linear-gradient(90deg,#0f5132,#198754);
+  color:white;
+  padding:60px 20px;
+}
+.hero h1 {font-size:36px;}
+.hero p {max-width:500px;}
+.btn {
+  background:#198754;
+  color:white;
+  padding:12px 25px;
+  border-radius:6px;
+  text-decoration:none;
+  display:inline-block;
+  margin-top:15px;
+}
+
+/* SECTION */
+.section {padding:50px 20px;text-align:center;}
+.cards {display:flex;flex-wrap:wrap;justify-content:center;}
+.card {
+  background:white;
+  margin:10px;
+  padding:20px;
+  border-radius:10px;
+  width:220px;
+  box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+/* ABOUT */
+.about {display:flex;flex-wrap:wrap;align-items:center;}
+.about img {width:300px;border-radius:10px;margin:10px;}
+.about-text {max-width:400px;margin:10px;}
+
+/* TESTIMONIAL */
+.testimonial {
+  background:white;
+  padding:20px;
+  margin:10px;
+  border-radius:10px;
+}
 </style>
+
 </head>
 
 <body>
 
-<h1>Digicrafst</h1>
-<p>Demo Prototype</p>
-
-<!-- Login -->
-<div class="box">
-<h2>Login</h2>
-<a class="btn">Login with Gmail</a>
+<!-- HERO -->
+<div class="hero">
+  <h1>Professional Digital Services Agency</h1>
+  <p>We deliver high-quality solutions for web, app, graphic design, and marketing.</p>
+  <p>✔ Website Development<br>✔ App Development<br>✔ Graphic Design</p>
+  <a class="btn">Get Started</a>
 </div>
 
-<!-- Dashboard -->
-<div class="box">
-<h2>Dashboard</h2>
-<p>Welcome User</p>
-<a class="btn">Start Project</a>
+<!-- SERVICES -->
+<div class="section">
+  <h2>Our Services</h2>
+  <p>We Turn Ideas into Reality</p>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Website Development</h3>
+      <p>Custom responsive websites</p>
+    </div>
+
+    <div class="card">
+      <h3>App Development</h3>
+      <p>Mobile apps Android/iOS</p>
+    </div>
+
+    <div class="card">
+      <h3>Graphic Design</h3>
+      <p>Logo, branding, creatives</p>
+    </div>
+
+    <div class="card">
+      <h3>Digital Marketing</h3>
+      <p>SEO & social media growth</p>
+    </div>
+  </div>
 </div>
 
-<!-- Chat -->
-<div class="box">
-<h2>Chat</h2>
-<p><b>Client:</b> I need logo</p>
-<p><b>You:</b> Sure, price ₹999</p>
-<input placeholder="Type message...">
+<!-- ABOUT -->
+<div class="section about">
+  <div class="about-text">
+    <h2>About Us</h2>
+    <p>Digicrafst is a professional digital agency helping businesses grow online.</p>
+    <p>✔ Experienced Team<br>✔ Client Focused<br>✔ Proven Results</p>
+  </div>
+
+  <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
 </div>
 
-<!-- Order -->
-<div class="box">
-<h2>Order Form</h2>
-<input placeholder="Your Name"><br>
-<input placeholder="Service"><br>
-<textarea placeholder="Project Details"></textarea>
-</div>
+<!-- TESTIMONIAL -->
+<div class="section">
+  <h2>What Our Clients Say</h2>
 
-<!-- Payment -->
-<div class="box">
-<h2>Payment</h2>
-<p>Offer: ₹999</p>
-<a class="btn">Pay Now</a>
-<p style="color:lightgreen;">Payment Successful (Demo)</p>
+  <div class="testimonial">
+    <p>"Amazing service and fast delivery!"</p>
+    <b>Anil Mehta</b>
+  </div>
+
+  <div class="testimonial">
+    <p>"Highly professional team."</p>
+    <b>Priya Verma</b>
+  </div>
 </div>
 
 </body>
