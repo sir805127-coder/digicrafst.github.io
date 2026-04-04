@@ -1,58 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Digicrafst</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {margin:0;font-family:Arial;background:#020617;color:white;}
-    header {text-align:center;padding:60px 20px;}
-    h1 {color:#38bdf8;font-size:42px;}
-    p {color:#cbd5f5;}
-    .btn {
-      background:#38bdf8;
-      color:black;
-      padding:12px 25px;
-      border-radius:8px;
-      text-decoration:none;
-      font-weight:bold;
-      display:inline-block;
-      margin:10px;
-    }
-    section {padding:40px;text-align:center;}
-    .card {
-      background:#1e293b;
-      margin:15px;
-      padding:20px;
-      border-radius:12px;
-    }
-  </style>
+<title>Digicrafst Demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {font-family:Arial;background:#020617;color:white;margin:0;text-align:center;}
+.btn {background:#38bdf8;color:black;padding:10px 20px;border-radius:6px;text-decoration:none;display:inline-block;margin:10px;}
+.box {background:#1e293b;padding:20px;margin:15px;border-radius:10px;}
+input, textarea {width:80%;padding:10px;margin:10px;border-radius:5px;border:none;}
+</style>
 </head>
 
 <body>
 
-<header>
-  <h1>Digicrafst</h1>
-  <p>Professional Graphic & Web Design Agency</p>
-  <a class="btn" href="https://wa.me/919693287482">Order Now</a>
-  <a class="btn" href="https://rzp.io/l/YOURLINK">Pay Now</a>
-</header>
+<h1>Digicrafst</h1>
+<p>Demo Prototype</p>
 
-<section>
-  <h2>Our Services</h2>
-  <div class="card">🎨 Logo Design</div>
-  <div class="card">📱 Social Media Design</div>
-  <div class="card">💻 Website Design</div>
-</section>
+<!-- Login -->
+<div class="box">
+<h2>Login</h2>
+<a class="btn">Login with Gmail</a>
+</div>
 
-<section>
-  <h2>Portfolio</h2>
-  <p>Upload your best designs here</p>
-</section>
+<!-- Dashboard -->
+<div class="box">
+<h2>Dashboard</h2>
+<p>Welcome User</p>
+<a class="btn">Start Project</a>
+</div>
 
-<section>
-  <h2>Contact</h2>
-  <p>WhatsApp: +91 9693287482</p>
-</section>
+<!-- Chat -->
+<div class="box">
+<h2>Chat</h2>
+<p><b>Client:</b> I need logo</p>
+<p><b>You:</b> Sure, price ₹999</p>
+<input placeholder="Type message...">
+</div>
+
+<!-- Order -->
+<div class="box">
+<h2>Order Form</h2>
+<input placeholder="Your Name"><br>
+<input placeholder="Service"><br>
+<textarea placeholder="Project Details"></textarea>
+</div>
+
+<!-- Payment -->
+<div class="box">
+<h2>Payment</h2>
+<p>Offer: ₹999</p>
+<a class="btn">Pay Now</a>
+<p style="color:lightgreen;">Payment Successful (Demo)</p>
+</div>
 
 </body>
 </html>
