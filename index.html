@@ -1,166 +1,524 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Digicrafst</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digicrafts | Premium Digital Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* ========================================
+        1. GLOBAL STYLES & VARIABLES
+        ========================================
+        */
+        :root {
+            --primary: #6366f1; /* Indigo */
+            --primary-glow: rgba(99, 102, 241, 0.5);
+            --bg-dark: #0a0a0c;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-<style>
-body {
-  margin:0;
-  font-family: 'Segoe UI', sans-serif;
-  background:#0b0f1a;
-  color:white;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
 
-/* NAV */
-nav {
-  display:flex;
-  justify-content:space-between;
-  padding:20px;
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(10px);
-}
-nav h2 {color:#38bdf8;}
-nav a {
-  color:white;
-  margin-left:15px;
-  text-decoration:none;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-/* HERO */
-.hero {
-  text-align:center;
-  padding:80px 20px;
-}
-.hero h1 {
-  font-size:40px;
-  background:linear-gradient(90deg,#38bdf8,#22c55e);
-  -webkit-background-clip:text;
-  color:transparent;
-}
-.hero p {color:#aaa;max-width:500px;margin:auto;}
-.btn {
-  display:inline-block;
-  margin-top:20px;
-  padding:12px 25px;
-  border-radius:8px;
-  background:linear-gradient(90deg,#38bdf8,#22c55e);
-  color:black;
-  text-decoration:none;
-  font-weight:bold;
-}
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-/* SERVICES */
-.section {
-  padding:60px 20px;
-  text-align:center;
-}
-.cards {
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-}
-.card {
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(15px);
-  margin:15px;
-  padding:25px;
-  border-radius:15px;
-  width:250px;
-  transition:0.3s;
-}
-.card:hover {
-  transform:translateY(-5px);
-  box-shadow:0 0 20px rgba(56,189,248,0.3);
-}
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
 
-/* ABOUT */
-.about {
-  display:flex;
-  flex-wrap:wrap;
-  align-items:center;
-  justify-content:center;
-}
-.about img {
-  width:300px;
-  border-radius:15px;
-  margin:15px;
-}
-.about-text {
-  max-width:400px;
-  margin:15px;
-}
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
 
-/* FOOTER */
-footer {
-  text-align:center;
-  padding:30px;
-  color:#888;
-}
-</style>
+        /* ========================================
+        2. REUSABLE COMPONENTS
+        ========================================
+        */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
 
+        .btn-premium {
+            background: var(--gradient);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            display: inline-block;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            color: white;
+            box-shadow: 0 4px 15px var(--primary-glow);
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--primary-glow);
+            filter: brightness(1.1);
+        }
+
+        .glass {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+        }
+
+        .section-padding { padding: 100px 0; }
+
+        /* ========================================
+        3. NAVIGATION
+        ========================================
+        */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 0;
+            transition: var(--transition);
+        }
+
+        nav.scrolled {
+            background: rgba(10, 10, 12, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a:hover { color: var(--primary); }
+
+        /* ========================================
+        4. HERO SECTION
+        ========================================
+        */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: var(--primary);
+            filter: blur(150px);
+            opacity: 0.15;
+            top: -100px;
+            right: -100px;
+            z-index: -1;
+        }
+
+        .hero-text { max-width: 700px; }
+        .hero-text h1 {
+            font-size: clamp(3rem, 8vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+        }
+
+        /* ========================================
+        5. SERVICES
+        ========================================
+        */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            padding: 3rem 2rem;
+            transition: var(--transition);
+            text-align: left;
+        }
+
+        .service-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-10px);
+        }
+
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ========================================
+        6. PORTFOLIO
+        ========================================
+        */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .portfolio-item {
+            height: 400px;
+            overflow: hidden;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover img { transform: scale(1.1); }
+
+        /* ========================================
+        7. CHAT UI DEMO
+        ========================================
+        */
+        .chat-container {
+            height: 500px;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .chat-sidebar { width: 30%; border-right: 1px solid var(--glass-border); padding: 1rem; }
+        .chat-main { width: 70%; display: flex; flex-direction: column; }
+        .chat-messages { flex-grow: 1; padding: 2rem; overflow-y: auto; }
+        .chat-input { padding: 1.5rem; border-top: 1px solid var(--glass-border); }
+
+        .bubble {
+            padding: 10px 15px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            max-width: 80%;
+        }
+        .received { background: #333; align-self: flex-start; }
+        .sent { background: var(--primary); align-self: flex-end; margin-left: auto; }
+
+        /* ========================================
+        8. LOGIN & FORMS
+        ========================================
+        */
+        .form-group { margin-bottom: 1.5rem; }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: white;
+            outline: none;
+        }
+
+        .google-btn {
+            background: white;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* ========================================
+        9. FOOTER & POLICIES
+        ========================================
+        */
+        footer {
+            background: #050505;
+            padding: 80px 0 30px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 40px;
+        }
+
+        .footer-links li { margin-bottom: 10px; color: var(--text-dim); cursor: pointer; }
+        .footer-links li:hover { color: var(--primary); }
+
+        .legal-overlay {
+            position: fixed;
+            top:0; left:0; width:100%; height:100%;
+            background: var(--bg-dark);
+            z-index: 2000;
+            display: none;
+            padding: 5rem 2rem;
+            overflow-y: auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- NAV -->
-<nav>
-  <h2>Digicrafst</h2>
-  <div>
-    <a href="#">Home</a>
-    <a href="#">Services</a>
-    <a href="#">Contact</a>
-  </div>
-</nav>
+    <nav id="navbar">
+        <div class="container nav-content">
+            <div class="logo">DIGICRAFTS</div>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Work</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="javascript:void(0)" onclick="toggleSection('login-page')" class="btn-premium">Client Login</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <h1>Build Your Digital Brand</h1>
-  <p>We create high-end websites, branding, and design solutions that grow your business.</p>
-  <a class="btn" href="#">Get Started</a>
-</div>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-text">
+                <h1>Crafting Digital <br><span style="color: var(--primary)">Excellence.</span></h1>
+                <p>High-end software development, stunning 3D brand identities, and AI-driven content for modern startups. We don't just build apps; we create experiences.</p>
+                <div style="display: flex; gap: 1rem;">
+                    <a href="#contact" class="btn-premium">Start a Project</a>
+                    <a href="#portfolio" class="btn-premium" style="background: transparent; border: 1px solid var(--glass-border);">View Portfolio</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- SERVICES -->
-<div class="section">
-  <h2>Our Services</h2>
+    <section id="services" class="section-padding">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 3rem; text-align: center;">Our Expertise</h2>
+            <div class="grid-3">
+                <div class="glass service-card">
+                    <div class="icon-box">⚡</div>
+                    <h3>App Development</h3>
+                    <p style="color: var(--text-dim); margin-top: 1rem;">Scalable, fast, and intuitive mobile and web applications built with the latest tech stack.</p>
+                </div>
+                <div class="glass service-card">
+                    <div class="icon-box">🎨</div>
+                    <h3>3D Branding</h3>
+                    <p style="color: var(--text-dim); margin-top: 1rem;">Elevate your identity with glossy 3D logos, metallic typography, and premium visual assets.</p>
+                </div>
+                <div class="glass service-card">
+                    <div class="icon-box">🤖</div>
+                    <h3>AI Solutions</h3>
+                    <p style="color: var(--text-dim); margin-top: 1rem;">Harnessing AI for hyper-realistic imagery and automated content generation workflows.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <div class="cards">
-    <div class="card">
-      <h3>Website Design</h3>
-      <p>Modern responsive websites</p>
+    <section id="portfolio" class="section-padding" style="background: #0d0d0f;">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 3rem;">Selected Works</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item glass">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000" alt="Work 1">
+                </div>
+                <div class="portfolio-item glass">
+                    <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1000" alt="Work 2">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="grid-3">
+                <div class="glass" style="padding: 2rem;">
+                    <h3>Place an Order</h3>
+                    <div class="form-group" style="margin-top: 1.5rem;">
+                        <label>Service Type</label>
+                        <select style="width: 100%; padding: 12px; background: #1a1a1a; border: 1px solid #333; color: white; border-radius: 10px;">
+                            <option>3D Logo Design</option>
+                            <option>App Development</option>
+                            <option>YouTube Growth</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Project Budget ($)</label>
+                        <input type="number" placeholder="500">
+                    </div>
+                    <button class="btn-premium" style="width: 100%;">Create Order</button>
+                </div>
+
+                <div class="glass" style="padding: 2rem; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 2px solid var(--primary);">
+                    <h3>Instant Checkout</h3>
+                    <p style="margin: 1rem 0; color: var(--text-dim);">Secure payment via Razorpay</p>
+                    <div style="font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem;">$299.00</div>
+                    <button class="btn-premium" style="width: 100%; background: #2b6cb0;">Pay Now with Razorpay</button>
+                </div>
+
+                <div class="glass chat-container">
+                    <div class="chat-main" style="width: 100%;">
+                        <div style="padding: 10px; border-bottom: 1px solid #333; font-weight: 600;">Project Chat (Admin)</div>
+                        <div class="chat-messages">
+                            <div class="bubble received">Hello! How is the logo design coming along?</div>
+                            <div class="bubble sent">Almost done. Applying the metallic finish now!</div>
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" placeholder="Type a message...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding">
+        <div class="container" style="max-width: 800px; text-align: center;">
+            <h2 style="font-size: 3rem; margin-bottom: 1rem;">Let's build something.</h2>
+            <p style="color: var(--text-dim); margin-bottom: 3rem;">Ready to start your digital transformation? Drop us a line.</p>
+            <form class="glass" style="padding: 3rem; text-align: left;">
+                <div class="grid-3" style="grid-template-columns: 1fr 1fr; margin-bottom: 1rem;">
+                    <input type="text" placeholder="Your Name">
+                    <input type="email" placeholder="Your Email">
+                </div>
+                <textarea rows="5" placeholder="Project Details" style="margin-bottom: 1.5rem;"></textarea>
+                <button class="btn-premium" style="width: 100%;">Send Inquiry</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="logo" style="margin-bottom: 1.5rem;">DIGICRAFTS</div>
+                    <p style="color: var(--text-dim);">The premium digital agency for creators and startups worldwide.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 1.5rem;">Company</h4>
+                    <ul class="footer-links">
+                        <li>About Us</li>
+                        <li>Portfolio</li>
+                        <li>Contact</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 1.5rem;">Legal</h4>
+                    <ul class="footer-links">
+                        <li onclick="showLegal('privacy')">Privacy Policy</li>
+                        <li onclick="showLegal('terms')">Terms of Service</li>
+                        <li onclick="showLegal('refund')">Refund Policy</li>
+                        <li onclick="showLegal('bid')">Bid Policy</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 1.5rem;">Connect</h4>
+                    <p style="color: var(--text-dim);">hello@digicrafts.io</p>
+                    <p style="color: var(--text-dim);">+91 98765 43210</p>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #1a1a1a; padding-top: 20px; text-align: center; color: var(--text-dim); font-size: 0.9rem;">
+                © 2026 Digicrafts Digital Services. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <div id="login-page" class="legal-overlay">
+        <div class="container" style="max-width: 400px; margin-top: 5vh;">
+            <div class="glass" style="padding: 3rem; text-align: center;">
+                <h2 style="margin-bottom: 1rem;">Welcome Back</h2>
+                <p style="color: var(--text-dim); margin-bottom: 2rem;">Manage your projects and orders</p>
+                <div class="google-btn">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_Logo.svg" width="20" alt="Google">
+                    Continue with Google
+                </div>
+                <div style="margin: 1.5rem 0; color: #333;">OR</div>
+                <input type="email" placeholder="Email" style="margin-bottom: 1rem;">
+                <input type="password" placeholder="Password" style="margin-bottom: 1.5rem;">
+                <button class="btn-premium" style="width: 100%;">Sign In</button>
+                <p style="margin-top: 1.5rem; font-size: 0.9rem; cursor: pointer;" onclick="toggleSection('login-page')">Close</p>
+            </div>
+        </div>
     </div>
 
-    <div class="card">
-      <h3>Graphic Design</h3>
-      <p>Logos, banners, branding</p>
+    <div id="legal-modal" class="legal-overlay">
+        <div class="container" style="max-width: 800px;">
+            <button class="btn-premium" style="margin-bottom: 2rem;" onclick="closeLegal()">← Back to Site</button>
+            <div id="legal-content">
+                </div>
+        </div>
     </div>
 
-    <div class="card">
-      <h3>UI/UX Design</h3>
-      <p>Clean & user-friendly interfaces</p>
-    </div>
+    <script>
+        // Navbar scroll effect
+        window.onscroll = function() {
+            const nav = document.getElementById('navbar');
+            if (window.pageYOffset > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        };
 
-    <div class="card">
-      <h3>Marketing</h3>
-      <p>Grow your online presence</p>
-    </div>
-  </div>
-</div>
+        // UI Toggle functions
+        function toggleSection(id) {
+            const el = document.getElementById(id);
+            el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+        }
 
-<!-- ABOUT -->
-<div class="section about">
-  <div class="about-text">
-    <h2>About Digicrafst</h2>
-    <p>We are a creative digital team helping brands grow with design and technology.</p>
-  </div>
+        function showLegal(type) {
+            const modal = document.getElementById('legal-modal');
+            const content = document.getElementById('legal-content');
+            modal.style.display = 'block';
 
-  <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
-</div>
-
-<!-- FOOTER -->
-<footer>
-  © 2026 Digicrafst. All rights reserved.
-</footer>
-
-</body>
-</html>
+            const docs = {
+                privacy: "<h2>Privacy Policy</h2><p>Your data is encrypted and never shared. We collect only necessary information to facilitate project delivery.</p>",
+                terms: "<h2>Terms & Conditions</h2><p>By using Digicrafts, you agree to our service terms. All custom designs are IP of the client upon final payment.</p>",
+                refund: "<h2>Refund Policy</h2><p>We offer 100% satisfaction guarantee. I
