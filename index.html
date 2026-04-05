@@ -3,196 +3,486 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digicrafst | Premium Digital Design Services</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <title>Digicrafst | Premium Digital Design Agency</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- RESET & BASE --- */
+        :root {
+            --bg-dark: #05070a;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --neon-blue: #00d2ff;
+            --neon-green: #3affaa;
+            --gradient-primary: linear-gradient(135deg, var(--neon-blue), var(--neon-green));
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- BACKGROUND EFFECTS --- */
+        .glow-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 210, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(58, 255, 170, 0.05) 0%, transparent 40%);
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 20px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 7, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--neon-blue); }
+
+        .btn-nav {
+            background: var(--gradient-primary);
+            padding: 10px 20px;
+            border-radius: 8px;
+            color: #000;
+            font-weight: 600;
+            text-decoration: none;
+            margin-left: 30px;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 180px 10% 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-dim);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+        }
+
+        .hero-btns .btn-main {
+            padding: 15px 35px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-prime { background: var(--gradient-primary); color: #000; }
+        .btn-sec { border: 1px solid var(--glass-border); color: #fff; background: rgba(255,255,255,0.05); }
+        .hero-btns .btn-main:hover { transform: translateY(-5px); }
+
+        /* --- TRUST SECTION --- */
+        .trust-bar {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            padding: 40px;
+            background: var(--card-bg);
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            flex-wrap: wrap;
+        }
+
+        .trust-item { color: var(--text-dim); font-size: 0.9rem; display: flex; align-items: center; gap: 10px; }
+        .trust-item span { color: var(--neon-green); font-weight: bold; }
+
+        /* --- SERVICES --- */
+        .section-padding { padding: 100px 10%; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 10px; }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            padding: 40px 30px;
+            border-radius: 20px;
+            transition: 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .card:hover {
+            border-color: var(--neon-blue);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.1);
+        }
+
+        .card h3 { margin-bottom: 15px; color: var(--neon-blue); }
+
+        /* --- PRICING --- */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .price-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            padding: 50px 30px;
+            border-radius: 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-card.popular {
+            border: 2px solid var(--neon-green);
+            transform: scale(1.05);
+        }
+
+        .price-card h4 { font-size: 1.2rem; margin-bottom: 10px; }
+        .price-card .amount { font-size: 3rem; font-weight: 800; margin-bottom: 20px; }
+        .price-card ul { list-style: none; margin-bottom: 30px; color: var(--text-dim); }
+        .price-card ul li { margin-bottom: 10px; }
+
+        /* --- ORDER FORM --- */
+        .order-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 50px;
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; color: var(--text-dim); }
+        input, select, textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: white;
+            outline: none;
+        }
+        input:focus { border-color: var(--neon-blue); }
+
+        /* --- CHAT UI --- */
+        .chat-demo {
+            max-width: 400px;
+            margin: 50px auto;
+            background: #111;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+        }
+        .chat-header { background: #1a1a1a; padding: 15px; font-weight: bold; border-bottom: 1px solid var(--glass-border); }
+        .chat-body { padding: 20px; height: 250px; display: flex; flex-direction: column; gap: 15px; }
+        .msg { padding: 10px 15px; border-radius: 12px; max-width: 80%; font-size: 0.85rem; }
+        .msg.admin { background: var(--gradient-primary); color: #000; align-self: flex-start; }
+        .msg.client { background: #333; color: #fff; align-self: flex-end; }
+
+        /* --- FOOTER & POLICIES --- */
+        footer {
+            padding: 80px 10% 40px;
+            background: #020305;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h4 { margin-bottom: 20px; color: #fff; }
+        .footer-col a { display: block; color: var(--text-dim); text-decoration: none; margin-bottom: 10px; font-size: 0.85rem; }
+        
+        .legal-notice {
+            font-size: 0.75rem;
+            color: #555;
+            border-top: 1px solid #111;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        /* --- UTILS --- */
+        .hidden { display: none; }
+        .success-overlay {
+            position: fixed; top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.9); display: flex; align-items: center;
+            justify-content: center; z-index: 2000; display: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.8rem; }
+        }
+    </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="container nav-container">
-            <div class="logo">DIGI<span>CRAFST</span></div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#order" class="btn-primary">Start Order</a></li>
-            </ul>
-            <div class="menu-toggle" id="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
+    <div class="glow-bg"></div>
+
+    <nav>
+        <div class="logo">DIGICRAFST</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#contact">Contact</a>
         </div>
+        <a href="#order" class="btn-nav">Start Order</a>
     </nav>
 
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <span class="badge">Elevate Your Visual Identity</span>
-                <h1>High-Quality Designs That <span class="gradient-text">Grow Your Brand</span></h1>
-                <p>Premium graphics, logos, and social media assets starting from just ₹50. Trusted by creators and startups worldwide.</p>
-                <div class="hero-btns">
-                    <a href="#order" class="btn-primary-large">Start Your Order</a>
-                    <a href="#portfolio" class="btn-secondary-large">View Portfolio</a>
-                </div>
-                <div class="trust-icons">
-                    <span><i class="fas fa-check-circle"></i> Secure Payment</span>
-                    <span><i class="fas fa-bolt"></i> Fast Delivery</span>
-                    <span><i class="fas fa-headset"></i> 24/7 Support</span>
-                </div>
+    <section class="hero" id="home">
+        <h1>Crafting Digital <span>Masterpieces</span> For Your Brand</h1>
+        <p>Premium logo design, social media assets, and high-conversion ad banners. Elevate your visual identity today.</p>
+        <div class="hero-btns">
+            <a href="#order" class="btn-main btn-prime">Start Your Project</a>
+            <a href="#portfolio" class="btn-main btn-sec">View Portfolio</a>
+        </div>
+    </section>
+
+    <div class="trust-bar">
+        <div class="trust-item"><span>✓</span> Secure Payment</div>
+        <div class="trust-item"><span>✓</span> 48h Fast Delivery</div>
+        <div class="trust-item"><span>✓</span> 24/7 Expert Support</div>
+        <div class="trust-item"><span>✓</span> 100% Satisfaction</div>
+    </div>
+
+    <section class="section-padding" id="services">
+        <div class="section-title">
+            <h2>Our Specialized Services</h2>
+            <p style="color: var(--text-dim);">Bespoke design solutions tailored for growth.</p>
+        </div>
+        <div class="services-grid">
+            <div class="card">
+                <h3>Logo Design</h3>
+                <p>Iconic, minimalist, and memorable brand identities.</p>
+            </div>
+            <div class="card">
+                <h3>Social Media</h3>
+                <p>Bespoke posts, stories, and carousels that drive engagement.</p>
+            </div>
+            <div class="card">
+                <h3>YouTube Gear</h3>
+                <p>Viral thumbnails and high-impact channel art.</p>
+            </div>
+            <div class="card">
+                <h3>Ads & Banners</h3>
+                <p>Visuals designed to convert clicks into customers.</p>
             </div>
         </div>
     </section>
 
-    <section id="services" class="services">
-        <div class="container">
-            <h2 class="section-title">Our Specialized Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <i class="fas fa-pen-nib"></i>
-                    <h3>Logo Design</h3>
-                    <p>Minimalist, mascot, or corporate logos that define your brand essence.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-share-nodes"></i>
-                    <h3>Social Media</h3>
-                    <p>Engaging posts and stories optimized for Instagram, FB, and LinkedIn.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-play"></i>
-                    <h3>YouTube Assets</h3>
-                    <p>High-CTR thumbnails and channel art to boost your views instantly.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-ad"></i>
-                    <h3>Banner & Ads</h3>
-                    <p>Professional ad creatives designed to convert viewers into customers.</p>
-                </div>
+    <section class="section-padding" id="pricing">
+        <div class="section-title">
+            <h2>Transparent Pricing</h2>
+        </div>
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h4>Starter</h4>
+                <div class="amount">₹50</div>
+                <ul>
+                    <li>1 Basic Graphic</li>
+                    <li>2 Revisions</li>
+                    <li>24h Delivery</li>
+                </ul>
+                <a href="#order" class="btn-main btn-sec" style="display:block; text-decoration: none;">Choose Plan</a>
+            </div>
+            <div class="price-card popular">
+                <h4>Pro</h4>
+                <div class="amount">₹499</div>
+                <ul>
+                    <li>Full Brand Identity</li>
+                    <li>Unlimited Revisions</li>
+                    <li>Premium Support</li>
+                </ul>
+                <a href="#order" class="btn-main btn-prime" style="display:block; text-decoration: none;">Choose Plan</a>
+            </div>
+            <div class="price-card">
+                <h4>Ultimate</h4>
+                <div class="amount">₹999</div>
+                <ul>
+                    <li>Complete Social Pack</li>
+                    <li>Priority Queue</li>
+                    <li>Source Files Included</li>
+                </ul>
+                <a href="#order" class="btn-main btn-sec" style="display:block; text-decoration: none;">Choose Plan</a>
             </div>
         </div>
     </section>
 
-    <section id="pricing" class="pricing">
-        <div class="container">
-            <h2 class="section-title">Transparent Pricing</h2>
-            <div class="pricing-grid">
-                <div class="price-card">
-                    <h4>Basic</h4>
-                    <div class="price">₹50<span>/item</span></div>
-                    <ul>
-                        <li>1 Social Media Post</li>
-                        <li>High Res JPG/PNG</li>
-                        <li>1 Revision</li>
-                        <li>24h Delivery</li>
-                    </ul>
-                    <a href="#order" class="btn-outline">Choose Basic</a>
+    <section class="section-padding" id="order">
+        <div class="section-title">
+            <h2>Place Your Order</h2>
+        </div>
+        <div class="order-container">
+            <form id="orderForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="John Doe" required>
                 </div>
-                <div class="price-card featured">
-                    <div class="popular-tag">Most Popular</div>
-                    <h4>Standard</h4>
-                    <div class="price">₹499<span>/pack</span></div>
-                    <ul>
-                        <li>5 Premium Designs</li>
-                        <li>Source Files Included</li>
-                        <li>Unlimited Revisions</li>
-                        <li>Priority Support</li>
-                    </ul>
-                    <a href="#order" class="btn-primary">Choose Standard</a>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="john@example.com" required>
                 </div>
-                <div class="price-card">
-                    <h4>Premium</h4>
-                    <div class="price">₹999<span>/brand</span></div>
-                    <ul>
-                        <li>Full Branding Kit</li>
-                        <li>Logo + Stationery</li>
-                        <li>Social Media Strategy</li>
-                        <li>Dedicated Manager</li>
-                    </ul>
-                    <a href="#order" class="btn-outline">Choose Premium</a>
+                <div class="form-group">
+                    <label>WhatsApp Number</label>
+                    <input type="text" placeholder="+91 XXXXX XXXXX" required>
                 </div>
-            </div>
+                <div class="form-group">
+                    <label>Service Type</label>
+                    <select>
+                        <option>Logo Design</option>
+                        <option>YouTube Thumbnail</option>
+                        <option>Social Media Pack</option>
+                        <option>Banner/Ad</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Project Description</label>
+                    <textarea rows="4" placeholder="Tell us about your vision..."></textarea>
+                </div>
+                <button type="button" onclick="showPayment()" class="btn-main btn-prime" style="width:100%; border:none; cursor:pointer; font-size: 1.1rem; padding: 18px;">
+                    Proceed to Payment
+                </button>
+            </form>
         </div>
     </section>
 
-    <section id="order" class="order-section">
-        <div class="container">
-            <div class="order-container glass">
-                <div class="order-form-side">
-                    <h3>Place Your Order</h3>
-                    <form id="mainOrderForm">
-                        <div class="form-group">
-                            <input type="text" placeholder="Full Name" required>
-                            <input type="text" placeholder="WhatsApp Number" required>
-                        </div>
-                        <input type="email" placeholder="Email Address" required>
-                        <select required>
-                            <option value="">Select Service</option>
-                            <option>Logo Design</option>
-                            <option>Social Media Kit</option>
-                            <option>YouTube Thumbnail</option>
-                            <option>Other</option>
-                        </select>
-                        <textarea placeholder="Describe your requirements (Theme, Color, Text...)" rows="4"></textarea>
-                        <div class="file-upload">
-                            <label for="file"><i class="fas fa-cloud-upload-alt"></i> Upload Reference (Optional)</label>
-                            <input type="file" id="file">
-                        </div>
-                        <button type="button" class="btn-pay" onclick="simulatePayment()">
-                            <i class="fas fa-lock"></i> Pay Now via Razorpay
-                        </button>
-                    </form>
-                </div>
-                
-                <div class="chat-side">
-                    <div class="chat-header">
-                        <div class="status-dot"></div>
-                        <span>Designer Chat (Live)</span>
-                    </div>
-                    <div class="chat-body" id="chatBody">
-                        <div class="msg bot">Hello! How can we help you with your design today?</div>
-                        <div class="msg user">I need a logo for my tech startup.</div>
-                        <div class="msg bot">Great! Please fill the form and complete payment to start.</div>
-                    </div>
-                    <div class="chat-input">
-                        <input type="text" placeholder="Type a message...">
-                        <button><i class="fas fa-paper-plane"></i></button>
-                    </div>
-                </div>
+    <div class="section-padding">
+        <div class="section-title"><h3>Real-Time Collaboration</h3></div>
+        <div class="chat-demo">
+            <div class="chat-header">Project Chat #4029</div>
+            <div class="chat-body">
+                <div class="msg client">Hi, can we make the logo slightly more neon?</div>
+                <div class="msg admin">Absolutely! Adjusting the hex codes now. Sending preview in 5 mins.</div>
+                <div class="msg client">Perfect, thanks!</div>
             </div>
-        </div>
-    </section>
-
-    <div id="paymentModal" class="modal">
-        <div class="modal-content glass">
-            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
-            <h2>Payment Successful!</h2>
-            <p>Order ID: #DC-88291</p>
-            <p>Our team will contact you on WhatsApp within 15 minutes.</p>
-            <button onclick="closeModal()" class="btn-primary">Back to Home</button>
+            <div style="padding: 10px; background: #000; display:flex; gap: 10px;">
+                <input type="text" placeholder="Type message..." style="padding:8px; font-size: 0.8rem;">
+                <button class="btn-nav" style="margin:0; padding: 8px 15px;">Send</button>
+            </div>
         </div>
     </div>
 
     <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <div class="logo">DIGI<span>CRAFST</span></div>
-                    <p>Ultra-premium designs for modern brands.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Policies</h4>
-                    <a href="#" onclick="alert('Privacy Policy: We protect your data...')">Privacy Policy</a>
-                    <a href="#" onclick="alert('Refund Policy: No refunds once design work has started.')">Refund Policy</a>
-                    <a href="#" onclick="alert('Terms: 50% advance required for custom bulk orders.')">Terms & Conditions</a>
-                </div>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo" style="margin-bottom: 20px;">DIGICRAFST</div>
+                <p style="color: var(--text-dim); font-size: 0.9rem;">The future of digital design. Fast, affordable, and premium.</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Digicrafst. All Rights Reserved. Built for high-conversion.</p>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="#">About Us</a>
+                <a href="#services">Services</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#order">Order Now</a>
             </div>
+            <div class="footer-col">
+                <h4>Legal & Policy</h4>
+                <a href="#legal">Privacy Policy</a>
+                <a href="#legal">Terms & Conditions</a>
+                <a href="#legal">Refund Policy</a>
+                <a href="#legal">Order/Bid Policy</a>
+            </div>
+        </div>
+
+        <div id="legal" class="legal-notice">
+            <p><strong>Strict Policies:</strong> 1. Full advance payment is required to initiate any project. 2. Once work has commenced, no refunds will be issued. 3. Delivery timelines vary by package (24h-72h). 4. Maximum of 3 revision cycles for Standard/Basic plans. 5. Anti-Fraud: Any Chargeback attempts without prior communication will result in a permanent ban and legal reporting.</p>
+            <p style="margin-top:10px;">© 2024 Digicrafst. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <div id="paymentOverlay" class="success-overlay">
+        <div style="text-align:center; background: #111; padding: 50px; border-radius: 20px; border: 1px solid var(--neon-green);">
+            <div style="font-size: 4rem; margin-bottom: 20px;">✅</div>
+            <h2 style="color: var(--neon-green);">Payment Successful!</h2>
+            <p style="color: var(--text-dim); margin: 15px 0;">Our team will contact you via WhatsApp shortly.</p>
+            <button onclick="closePayment()" class="btn-main btn-sec" style="cursor:pointer; border: none;">Back to Home</button>
+        </div>
+    </div>
+
+    <script>
+        function showPayment() {
+            // Simulated payment delay
+            document.querySelector('.btn-prime').innerText = "Processing...";
+            setTimeout(() => {
+                document.getElementById('paymentOverlay').style.display = 'flex';
+            }, 1500);
+        }
+
+        function closePayment() {
+            document.getElementById('paymentOverlay').style.display = 'none';
+            document.querySelector('.btn-prime').innerText = "Proceed to Payment";
+            window.scrollTo(0, 0);
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
