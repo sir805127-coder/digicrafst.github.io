@@ -3,522 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digicrafts | Premium Digital Solutions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <style>
-        /* ========================================
-        1. GLOBAL STYLES & VARIABLES
-        ========================================
-        */
-        :root {
-            --primary: #6366f1; /* Indigo */
-            --primary-glow: rgba(99, 102, 241, 0.5);
-            --bg-dark: #0a0a0c;
-            --bg-card: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
-            --gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-dark); }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-
-        /* ========================================
-        2. REUSABLE COMPONENTS
-        ========================================
-        */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .btn-premium {
-            background: var(--gradient);
-            padding: 12px 28px;
-            border-radius: 50px;
-            font-weight: 600;
-            display: inline-block;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            color: white;
-            box-shadow: 0 4px 15px var(--primary-glow);
-        }
-
-        .btn-premium:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px var(--primary-glow);
-            filter: brightness(1.1);
-        }
-
-        .glass {
-            background: var(--bg-card);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-        }
-
-        .section-padding { padding: 100px 0; }
-
-        /* ========================================
-        3. NAVIGATION
-        ========================================
-        */
-        nav {
-            position: fixed;
-            top: 0; width: 100%;
-            z-index: 1000;
-            padding: 1.5rem 0;
-            transition: var(--transition);
-        }
-
-        nav.scrolled {
-            background: rgba(10, 10, 12, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: -1px;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .nav-links a:hover { color: var(--primary); }
-
-        /* ========================================
-        4. HERO SECTION
-        ========================================
-        */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: var(--primary);
-            filter: blur(150px);
-            opacity: 0.15;
-            top: -100px;
-            right: -100px;
-            z-index: -1;
-        }
-
-        .hero-text { max-width: 700px; }
-        .hero-text h1 {
-            font-size: clamp(3rem, 8vw, 4.5rem);
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            font-weight: 800;
-        }
-        .hero-text p {
-            font-size: 1.2rem;
-            color: var(--text-dim);
-            margin-bottom: 2rem;
-        }
-
-        /* ========================================
-        5. SERVICES
-        ========================================
-        */
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            padding: 3rem 2rem;
-            transition: var(--transition);
-            text-align: left;
-        }
-
-        .service-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-10px);
-        }
-
-        .icon-box {
-            width: 50px;
-            height: 50px;
-            background: var(--gradient);
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* ========================================
-        6. PORTFOLIO
-        ========================================
-        */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        .portfolio-item {
-            height: 400px;
-            overflow: hidden;
-            border-radius: 20px;
-            position: relative;
-        }
-
-        .portfolio-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .portfolio-item:hover img { transform: scale(1.1); }
-
-        /* ========================================
-        7. CHAT UI DEMO
-        ========================================
-        */
-        .chat-container {
-            height: 500px;
-            display: flex;
-            overflow: hidden;
-        }
-
-        .chat-sidebar { width: 30%; border-right: 1px solid var(--glass-border); padding: 1rem; }
-        .chat-main { width: 70%; display: flex; flex-direction: column; }
-        .chat-messages { flex-grow: 1; padding: 2rem; overflow-y: auto; }
-        .chat-input { padding: 1.5rem; border-top: 1px solid var(--glass-border); }
-
-        .bubble {
-            padding: 10px 15px;
-            border-radius: 15px;
-            margin-bottom: 10px;
-            max-width: 80%;
-        }
-        .received { background: #333; align-self: flex-start; }
-        .sent { background: var(--primary); align-self: flex-end; margin-left: auto; }
-
-        /* ========================================
-        8. LOGIN & FORMS
-        ========================================
-        */
-        .form-group { margin-bottom: 1.5rem; }
-        input, textarea {
-            width: 100%;
-            padding: 12px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--glass-border);
-            border-radius: 10px;
-            color: white;
-            outline: none;
-        }
-
-        .google-btn {
-            background: white;
-            color: black;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
-            padding: 12px;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        /* ========================================
-        9. FOOTER & POLICIES
-        ========================================
-        */
-        footer {
-            background: #050505;
-            padding: 80px 0 30px;
-            border-top: 1px solid var(--glass-border);
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 4rem;
-            margin-bottom: 40px;
-        }
-
-        .footer-links li { margin-bottom: 10px; color: var(--text-dim); cursor: pointer; }
-        .footer-links li:hover { color: var(--primary); }
-
-        .legal-overlay {
-            position: fixed;
-            top:0; left:0; width:100%; height:100%;
-            background: var(--bg-dark);
-            z-index: 2000;
-            display: none;
-            padding: 5rem 2rem;
-            overflow-y: auto;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .footer-grid { grid-template-columns: 1fr; }
-            .portfolio-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+    <title>Digicrafst | Premium Digital Design Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav id="navbar">
-        <div class="container nav-content">
-            <div class="logo">DIGICRAFTS</div>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">DIGI<span>CRAFST</span></div>
             <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#portfolio">Work</a></li>
                 <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="javascript:void(0)" onclick="toggleSection('login-page')" class="btn-premium">Client Login</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#order" class="btn-primary">Start Order</a></li>
             </ul>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </nav>
 
-    <section class="hero">
+    <section id="home" class="hero">
         <div class="container">
-            <div class="hero-text">
-                <h1>Crafting Digital <br><span style="color: var(--primary)">Excellence.</span></h1>
-                <p>High-end software development, stunning 3D brand identities, and AI-driven content for modern startups. We don't just build apps; we create experiences.</p>
-                <div style="display: flex; gap: 1rem;">
-                    <a href="#contact" class="btn-premium">Start a Project</a>
-                    <a href="#portfolio" class="btn-premium" style="background: transparent; border: 1px solid var(--glass-border);">View Portfolio</a>
+            <div class="hero-content">
+                <span class="badge">Elevate Your Visual Identity</span>
+                <h1>High-Quality Designs That <span class="gradient-text">Grow Your Brand</span></h1>
+                <p>Premium graphics, logos, and social media assets starting from just ₹50. Trusted by creators and startups worldwide.</p>
+                <div class="hero-btns">
+                    <a href="#order" class="btn-primary-large">Start Your Order</a>
+                    <a href="#portfolio" class="btn-secondary-large">View Portfolio</a>
+                </div>
+                <div class="trust-icons">
+                    <span><i class="fas fa-check-circle"></i> Secure Payment</span>
+                    <span><i class="fas fa-bolt"></i> Fast Delivery</span>
+                    <span><i class="fas fa-headset"></i> 24/7 Support</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="services" class="section-padding">
+    <section id="services" class="services">
         <div class="container">
-            <h2 style="font-size: 2.5rem; margin-bottom: 3rem; text-align: center;">Our Expertise</h2>
-            <div class="grid-3">
-                <div class="glass service-card">
-                    <div class="icon-box">⚡</div>
-                    <h3>App Development</h3>
-                    <p style="color: var(--text-dim); margin-top: 1rem;">Scalable, fast, and intuitive mobile and web applications built with the latest tech stack.</p>
+            <h2 class="section-title">Our Specialized Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-pen-nib"></i>
+                    <h3>Logo Design</h3>
+                    <p>Minimalist, mascot, or corporate logos that define your brand essence.</p>
                 </div>
-                <div class="glass service-card">
-                    <div class="icon-box">🎨</div>
-                    <h3>3D Branding</h3>
-                    <p style="color: var(--text-dim); margin-top: 1rem;">Elevate your identity with glossy 3D logos, metallic typography, and premium visual assets.</p>
+                <div class="service-card">
+                    <i class="fas fa-share-nodes"></i>
+                    <h3>Social Media</h3>
+                    <p>Engaging posts and stories optimized for Instagram, FB, and LinkedIn.</p>
                 </div>
-                <div class="glass service-card">
-                    <div class="icon-box">🤖</div>
-                    <h3>AI Solutions</h3>
-                    <p style="color: var(--text-dim); margin-top: 1rem;">Harnessing AI for hyper-realistic imagery and automated content generation workflows.</p>
+                <div class="service-card">
+                    <i class="fas fa-play"></i>
+                    <h3>YouTube Assets</h3>
+                    <p>High-CTR thumbnails and channel art to boost your views instantly.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-ad"></i>
+                    <h3>Banner & Ads</h3>
+                    <p>Professional ad creatives designed to convert viewers into customers.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="portfolio" class="section-padding" style="background: #0d0d0f;">
+    <section id="pricing" class="pricing">
         <div class="container">
-            <h2 style="font-size: 2.5rem; margin-bottom: 3rem;">Selected Works</h2>
-            <div class="portfolio-grid">
-                <div class="portfolio-item glass">
-                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000" alt="Work 1">
+            <h2 class="section-title">Transparent Pricing</h2>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h4>Basic</h4>
+                    <div class="price">₹50<span>/item</span></div>
+                    <ul>
+                        <li>1 Social Media Post</li>
+                        <li>High Res JPG/PNG</li>
+                        <li>1 Revision</li>
+                        <li>24h Delivery</li>
+                    </ul>
+                    <a href="#order" class="btn-outline">Choose Basic</a>
                 </div>
-                <div class="portfolio-item glass">
-                    <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1000" alt="Work 2">
+                <div class="price-card featured">
+                    <div class="popular-tag">Most Popular</div>
+                    <h4>Standard</h4>
+                    <div class="price">₹499<span>/pack</span></div>
+                    <ul>
+                        <li>5 Premium Designs</li>
+                        <li>Source Files Included</li>
+                        <li>Unlimited Revisions</li>
+                        <li>Priority Support</li>
+                    </ul>
+                    <a href="#order" class="btn-primary">Choose Standard</a>
+                </div>
+                <div class="price-card">
+                    <h4>Premium</h4>
+                    <div class="price">₹999<span>/brand</span></div>
+                    <ul>
+                        <li>Full Branding Kit</li>
+                        <li>Logo + Stationery</li>
+                        <li>Social Media Strategy</li>
+                        <li>Dedicated Manager</li>
+                    </ul>
+                    <a href="#order" class="btn-outline">Choose Premium</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section-padding">
+    <section id="order" class="order-section">
         <div class="container">
-            <div class="grid-3">
-                <div class="glass" style="padding: 2rem;">
-                    <h3>Place an Order</h3>
-                    <div class="form-group" style="margin-top: 1.5rem;">
-                        <label>Service Type</label>
-                        <select style="width: 100%; padding: 12px; background: #1a1a1a; border: 1px solid #333; color: white; border-radius: 10px;">
-                            <option>3D Logo Design</option>
-                            <option>App Development</option>
-                            <option>YouTube Growth</option>
+            <div class="order-container glass">
+                <div class="order-form-side">
+                    <h3>Place Your Order</h3>
+                    <form id="mainOrderForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Full Name" required>
+                            <input type="text" placeholder="WhatsApp Number" required>
+                        </div>
+                        <input type="email" placeholder="Email Address" required>
+                        <select required>
+                            <option value="">Select Service</option>
+                            <option>Logo Design</option>
+                            <option>Social Media Kit</option>
+                            <option>YouTube Thumbnail</option>
+                            <option>Other</option>
                         </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Project Budget ($)</label>
-                        <input type="number" placeholder="500">
-                    </div>
-                    <button class="btn-premium" style="width: 100%;">Create Order</button>
-                </div>
-
-                <div class="glass" style="padding: 2rem; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 2px solid var(--primary);">
-                    <h3>Instant Checkout</h3>
-                    <p style="margin: 1rem 0; color: var(--text-dim);">Secure payment via Razorpay</p>
-                    <div style="font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem;">$299.00</div>
-                    <button class="btn-premium" style="width: 100%; background: #2b6cb0;">Pay Now with Razorpay</button>
-                </div>
-
-                <div class="glass chat-container">
-                    <div class="chat-main" style="width: 100%;">
-                        <div style="padding: 10px; border-bottom: 1px solid #333; font-weight: 600;">Project Chat (Admin)</div>
-                        <div class="chat-messages">
-                            <div class="bubble received">Hello! How is the logo design coming along?</div>
-                            <div class="bubble sent">Almost done. Applying the metallic finish now!</div>
+                        <textarea placeholder="Describe your requirements (Theme, Color, Text...)" rows="4"></textarea>
+                        <div class="file-upload">
+                            <label for="file"><i class="fas fa-cloud-upload-alt"></i> Upload Reference (Optional)</label>
+                            <input type="file" id="file">
                         </div>
-                        <div class="chat-input">
-                            <input type="text" placeholder="Type a message...">
-                        </div>
+                        <button type="button" class="btn-pay" onclick="simulatePayment()">
+                            <i class="fas fa-lock"></i> Pay Now via Razorpay
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="chat-side">
+                    <div class="chat-header">
+                        <div class="status-dot"></div>
+                        <span>Designer Chat (Live)</span>
+                    </div>
+                    <div class="chat-body" id="chatBody">
+                        <div class="msg bot">Hello! How can we help you with your design today?</div>
+                        <div class="msg user">I need a logo for my tech startup.</div>
+                        <div class="msg bot">Great! Please fill the form and complete payment to start.</div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" placeholder="Type a message...">
+                        <button><i class="fas fa-paper-plane"></i></button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="section-padding">
-        <div class="container" style="max-width: 800px; text-align: center;">
-            <h2 style="font-size: 3rem; margin-bottom: 1rem;">Let's build something.</h2>
-            <p style="color: var(--text-dim); margin-bottom: 3rem;">Ready to start your digital transformation? Drop us a line.</p>
-            <form class="glass" style="padding: 3rem; text-align: left;">
-                <div class="grid-3" style="grid-template-columns: 1fr 1fr; margin-bottom: 1rem;">
-                    <input type="text" placeholder="Your Name">
-                    <input type="email" placeholder="Your Email">
-                </div>
-                <textarea rows="5" placeholder="Project Details" style="margin-bottom: 1.5rem;"></textarea>
-                <button class="btn-premium" style="width: 100%;">Send Inquiry</button>
-            </form>
+    <div id="paymentModal" class="modal">
+        <div class="modal-content glass">
+            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+            <h2>Payment Successful!</h2>
+            <p>Order ID: #DC-88291</p>
+            <p>Our team will contact you on WhatsApp within 15 minutes.</p>
+            <button onclick="closeModal()" class="btn-primary">Back to Home</button>
         </div>
-    </section>
+    </div>
 
     <footer>
         <div class="container">
             <div class="footer-grid">
-                <div>
-                    <div class="logo" style="margin-bottom: 1.5rem;">DIGICRAFTS</div>
-                    <p style="color: var(--text-dim);">The premium digital agency for creators and startups worldwide.</p>
+                <div class="footer-brand">
+                    <div class="logo">DIGI<span>CRAFST</span></div>
+                    <p>Ultra-premium designs for modern brands.</p>
                 </div>
-                <div>
-                    <h4 style="margin-bottom: 1.5rem;">Company</h4>
-                    <ul class="footer-links">
-                        <li>About Us</li>
-                        <li>Portfolio</li>
-                        <li>Contact</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 style="margin-bottom: 1.5rem;">Legal</h4>
-                    <ul class="footer-links">
-                        <li onclick="showLegal('privacy')">Privacy Policy</li>
-                        <li onclick="showLegal('terms')">Terms of Service</li>
-                        <li onclick="showLegal('refund')">Refund Policy</li>
-                        <li onclick="showLegal('bid')">Bid Policy</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 style="margin-bottom: 1.5rem;">Connect</h4>
-                    <p style="color: var(--text-dim);">hello@digicrafts.io</p>
-                    <p style="color: var(--text-dim);">+91 98765 43210</p>
+                <div class="footer-links">
+                    <h4>Policies</h4>
+                    <a href="#" onclick="alert('Privacy Policy: We protect your data...')">Privacy Policy</a>
+                    <a href="#" onclick="alert('Refund Policy: No refunds once design work has started.')">Refund Policy</a>
+                    <a href="#" onclick="alert('Terms: 50% advance required for custom bulk orders.')">Terms & Conditions</a>
                 </div>
             </div>
-            <div style="border-top: 1px solid #1a1a1a; padding-top: 20px; text-align: center; color: var(--text-dim); font-size: 0.9rem;">
-                © 2026 Digicrafts Digital Services. All rights reserved.
+            <div class="footer-bottom">
+                <p>&copy; 2026 Digicrafst. All Rights Reserved. Built for high-conversion.</p>
             </div>
         </div>
     </footer>
 
-    <div id="login-page" class="legal-overlay">
-        <div class="container" style="max-width: 400px; margin-top: 5vh;">
-            <div class="glass" style="padding: 3rem; text-align: center;">
-                <h2 style="margin-bottom: 1rem;">Welcome Back</h2>
-                <p style="color: var(--text-dim); margin-bottom: 2rem;">Manage your projects and orders</p>
-                <div class="google-btn">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_Logo.svg" width="20" alt="Google">
-                    Continue with Google
-                </div>
-                <div style="margin: 1.5rem 0; color: #333;">OR</div>
-                <input type="email" placeholder="Email" style="margin-bottom: 1rem;">
-                <input type="password" placeholder="Password" style="margin-bottom: 1.5rem;">
-                <button class="btn-premium" style="width: 100%;">Sign In</button>
-                <p style="margin-top: 1.5rem; font-size: 0.9rem; cursor: pointer;" onclick="toggleSection('login-page')">Close</p>
-            </div>
-        </div>
-    </div>
-
-    <div id="legal-modal" class="legal-overlay">
-        <div class="container" style="max-width: 800px;">
-            <button class="btn-premium" style="margin-bottom: 2rem;" onclick="closeLegal()">← Back to Site</button>
-            <div id="legal-content">
-                </div>
-        </div>
-    </div>
-
-    <script>
-        // Navbar scroll effect
-        window.onscroll = function() {
-            const nav = document.getElementById('navbar');
-            if (window.pageYOffset > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        };
-
-        // UI Toggle functions
-        function toggleSection(id) {
-            const el = document.getElementById(id);
-            el.style.display = (el.style.display === 'block') ? 'none' : 'block';
-        }
-
-        function showLegal(type) {
-            const modal = document.getElementById('legal-modal');
-            const content = document.getElementById('legal-content');
-            modal.style.display = 'block';
-
-            const docs = {
-                privacy: "<h2>Privacy Policy</h2><p>Your data is encrypted and never shared. We collect only necessary information to facilitate project delivery.</p>",
-                terms: "<h2>Terms & Conditions</h2><p>By using Digicrafts, you agree to our service terms. All custom designs are IP of the client upon final payment.</p>",
-                refund: "<h2>Refund Policy</h2><p>We offer 100% satisfaction guarantee. I
+    <script src="script.js"></script>
+</body>
+</html>
