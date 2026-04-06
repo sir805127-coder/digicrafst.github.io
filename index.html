@@ -3,21 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digicrafst | Premium Digital Design Agency</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Digicrafts | Professional Graphic Design Services</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        /* --- RESET & BASE --- */
+        /* --- CSS VARIABLES & RESET --- */
         :root {
-            --bg-dark: #05070a;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --neon-blue: #00d2ff;
-            --neon-green: #3affaa;
-            --gradient-primary: linear-gradient(135deg, var(--neon-blue), var(--neon-green));
-            --text-main: #ffffff;
-            --text-dim: #a0a0a0;
+            --primary: #6366f1; /* Modern Indigo/Purple */
+            --dark: #0f172a;
+            --light: #ffffff;
+            --gray: #64748b;
+            --bg-alt: #f8fafc;
+            --transition: all 0.3s ease;
         }
 
         * {
@@ -25,463 +23,434 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
+            background-color: var(--light);
+            color: var(--dark);
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
-        /* --- BACKGROUND EFFECTS --- */
-        .glow-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(0, 210, 255, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(58, 255, 170, 0.05) 0%, transparent 40%);
+        ul { list-style: none; }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- REUSABLE COMPONENTS --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-block;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4f46e5;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--dark);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--dark);
+            color: white;
+        }
+
+        section { padding: 80px 0; }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
         }
 
         /* --- NAVBAR --- */
         nav {
-            position: fixed;
-            top: 0; width: 100%;
-            padding: 20px 10%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(5, 7, 10, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--glass-border);
-            z-index: 1000;
+            width: 100%;
         }
 
         .logo {
             font-size: 1.5rem;
             font-weight: 800;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
         }
 
-        .nav-links a {
-            color: var(--text-dim);
-            text-decoration: none;
-            margin-left: 30px;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
+        .logo span { color: var(--primary); }
 
-        .nav-links a:hover { color: var(--neon-blue); }
+        .nav-links { display: flex; gap: 30px; }
 
-        .btn-nav {
-            background: var(--gradient-primary);
-            padding: 10px 20px;
-            border-radius: 8px;
-            color: #000;
-            font-weight: 600;
-            text-decoration: none;
-            margin-left: 30px;
-        }
+        .nav-links a:hover { color: var(--primary); }
 
         /* --- HERO SECTION --- */
         .hero {
-            padding: 180px 10% 100px;
+            height: 90vh;
+            display: flex;
+            align-items: center;
             text-align: center;
+            background: radial-gradient(circle at top right, #f1f5f9, #ffffff);
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: 4rem;
             font-weight: 800;
-            line-height: 1.1;
             margin-bottom: 20px;
-        }
-
-        .hero h1 span {
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
         }
 
         .hero p {
-            color: var(--text-dim);
-            max-width: 600px;
-            margin: 0 auto 40px;
-            font-size: 1.1rem;
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-bottom: 40px;
         }
 
-        .hero-btns .btn-main {
-            padding: 15px 35px;
-            border-radius: 12px;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
-            margin: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .btn-prime { background: var(--gradient-primary); color: #000; }
-        .btn-sec { border: 1px solid var(--glass-border); color: #fff; background: rgba(255,255,255,0.05); }
-        .hero-btns .btn-main:hover { transform: translateY(-5px); }
-
-        /* --- TRUST SECTION --- */
-        .trust-bar {
+        .hero-btns {
             display: flex;
+            gap: 15px;
             justify-content: center;
-            gap: 50px;
-            padding: 40px;
-            background: var(--card-bg);
-            border-top: 1px solid var(--glass-border);
-            border-bottom: 1px solid var(--glass-border);
-            flex-wrap: wrap;
         }
 
-        .trust-item { color: var(--text-dim); font-size: 0.9rem; display: flex; align-items: center; gap: 10px; }
-        .trust-item span { color: var(--neon-green); font-weight: bold; }
-
-        /* --- SERVICES --- */
-        .section-padding { padding: 100px 10%; }
-        .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title h2 { font-size: 2.5rem; margin-bottom: 10px; }
-
+        /* --- SERVICES / PRICING --- */
         .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            padding: 40px 30px;
-            border-radius: 20px;
-            transition: 0.3s;
-            backdrop-filter: blur(5px);
-        }
-
-        .card:hover {
-            border-color: var(--neon-blue);
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.1);
-        }
-
-        .card h3 { margin-bottom: 15px; color: var(--neon-blue); }
-
-        /* --- PRICING --- */
-        .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
 
         .price-card {
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            padding: 50px 30px;
-            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            transition: var(--transition);
             text-align: center;
-            position: relative;
-            overflow: hidden;
         }
 
-        .price-card.popular {
-            border: 2px solid var(--neon-green);
-            transform: scale(1.05);
+        .price-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.05);
         }
 
-        .price-card h4 { font-size: 1.2rem; margin-bottom: 10px; }
-        .price-card .amount { font-size: 3rem; font-weight: 800; margin-bottom: 20px; }
-        .price-card ul { list-style: none; margin-bottom: 30px; color: var(--text-dim); }
-        .price-card ul li { margin-bottom: 10px; }
+        .price-card h3 { margin-bottom: 10px; }
+        .price { font-size: 2.5rem; font-weight: 800; margin: 20px 0; }
+        .price span { font-size: 1rem; color: var(--gray); }
 
-        /* --- ORDER FORM --- */
-        .order-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--card-bg);
-            padding: 50px;
-            border-radius: 24px;
-            border: 1px solid var(--glass-border);
+        .features-list { margin: 25px 0; text-align: left; }
+        .features-list li { margin-bottom: 10px; color: var(--gray); }
+        .features-list i { color: #10b981; margin-right: 10px; }
+
+        /* --- PORTFOLIO --- */
+        .filter-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
         }
 
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; color: var(--text-dim); }
-        input, select, textarea {
-            width: 100%;
-            padding: 15px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
+        .filter-btn {
+            padding: 8px 20px;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+            background: white;
+        }
+
+        .filter-btn.active {
+            background: var(--dark);
             color: white;
-            outline: none;
-        }
-        input:focus { border-color: var(--neon-blue); }
-
-        /* --- CHAT UI --- */
-        .chat-demo {
-            max-width: 400px;
-            margin: 50px auto;
-            background: #111;
-            border-radius: 15px;
-            overflow: hidden;
-            border: 1px solid var(--glass-border);
-        }
-        .chat-header { background: #1a1a1a; padding: 15px; font-weight: bold; border-bottom: 1px solid var(--glass-border); }
-        .chat-body { padding: 20px; height: 250px; display: flex; flex-direction: column; gap: 15px; }
-        .msg { padding: 10px 15px; border-radius: 12px; max-width: 80%; font-size: 0.85rem; }
-        .msg.admin { background: var(--gradient-primary); color: #000; align-self: flex-start; }
-        .msg.client { background: #333; color: #fff; align-self: flex-end; }
-
-        /* --- FOOTER & POLICIES --- */
-        footer {
-            padding: 80px 10% 40px;
-            background: #020305;
-            border-top: 1px solid var(--glass-border);
         }
 
-        .footer-grid {
+        .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
         }
 
-        .footer-col h4 { margin-bottom: 20px; color: #fff; }
-        .footer-col a { display: block; color: var(--text-dim); text-decoration: none; margin-bottom: 10px; font-size: 0.85rem; }
-        
-        .legal-notice {
-            font-size: 0.75rem;
-            color: #555;
-            border-top: 1px solid #111;
-            padding-top: 20px;
-            margin-top: 20px;
+        .portfolio-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background: #eee;
         }
 
-        /* --- UTILS --- */
-        .hidden { display: none; }
-        .success-overlay {
-            position: fixed; top:0; left:0; width:100%; height:100%;
-            background: rgba(0,0,0,0.9); display: flex; align-items: center;
-            justify-content: center; z-index: 2000; display: none;
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
 
+        .portfolio-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+        .portfolio-item:hover img { transform: scale(1.1); }
+
+        /* --- CONTACT --- */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input, textarea {
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            outline-color: var(--primary);
+        }
+
+        .whatsapp-btn {
+            background: #25d366;
+            color: white;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .social-links a { font-size: 1.5rem; }
+
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
             .nav-links { display: none; }
-            .hero h1 { font-size: 2.8rem; }
+            .contact-wrapper { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <div class="glow-bg"></div>
-
     <nav>
-        <div class="logo">DIGICRAFST</div>
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#services">Services</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#contact">Contact</a>
+        <div class="container nav-content">
+            <a href="#" class="logo">DIGI<span>CRAFTS</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="btn btn-primary" style="padding: 8px 20px;">Hire Me</a>
         </div>
-        <a href="#order" class="btn-nav">Start Order</a>
     </nav>
 
     <section class="hero" id="home">
-        <h1>Crafting Digital <span>Masterpieces</span> For Your Brand</h1>
-        <p>Premium logo design, social media assets, and high-conversion ad banners. Elevate your visual identity today.</p>
-        <div class="hero-btns">
-            <a href="#order" class="btn-main btn-prime">Start Your Project</a>
-            <a href="#portfolio" class="btn-main btn-sec">View Portfolio</a>
-        </div>
-    </section>
-
-    <div class="trust-bar">
-        <div class="trust-item"><span>✓</span> Secure Payment</div>
-        <div class="trust-item"><span>✓</span> 48h Fast Delivery</div>
-        <div class="trust-item"><span>✓</span> 24/7 Expert Support</div>
-        <div class="trust-item"><span>✓</span> 100% Satisfaction</div>
-    </div>
-
-    <section class="section-padding" id="services">
-        <div class="section-title">
-            <h2>Our Specialized Services</h2>
-            <p style="color: var(--text-dim);">Bespoke design solutions tailored for growth.</p>
-        </div>
-        <div class="services-grid">
-            <div class="card">
-                <h3>Logo Design</h3>
-                <p>Iconic, minimalist, and memorable brand identities.</p>
-            </div>
-            <div class="card">
-                <h3>Social Media</h3>
-                <p>Bespoke posts, stories, and carousels that drive engagement.</p>
-            </div>
-            <div class="card">
-                <h3>YouTube Gear</h3>
-                <p>Viral thumbnails and high-impact channel art.</p>
-            </div>
-            <div class="card">
-                <h3>Ads & Banners</h3>
-                <p>Visuals designed to convert clicks into customers.</p>
+        <div class="container">
+            <h1>Professional Graphic <br> Design Services</h1>
+            <p>Logo, Social Media, Branding & More. Turning your vision into digital reality.</p>
+            <div class="hero-btns">
+                <a href="#portfolio" class="btn btn-primary">View Portfolio</a>
+                <a href="#contact" class="btn btn-outline">Order Now</a>
             </div>
         </div>
     </section>
 
-    <section class="section-padding" id="pricing">
-        <div class="section-title">
-            <h2>Transparent Pricing</h2>
-        </div>
-        <div class="pricing-grid">
-            <div class="price-card">
-                <h4>Starter</h4>
-                <div class="amount">₹50</div>
-                <ul>
-                    <li>1 Basic Graphic</li>
-                    <li>2 Revisions</li>
-                    <li>24h Delivery</li>
-                </ul>
-                <a href="#order" class="btn-main btn-sec" style="display:block; text-decoration: none;">Choose Plan</a>
-            </div>
-            <div class="price-card popular">
-                <h4>Pro</h4>
-                <div class="amount">₹499</div>
-                <ul>
-                    <li>Full Brand Identity</li>
-                    <li>Unlimited Revisions</li>
-                    <li>Premium Support</li>
-                </ul>
-                <a href="#order" class="btn-main btn-prime" style="display:block; text-decoration: none;">Choose Plan</a>
-            </div>
-            <div class="price-card">
-                <h4>Ultimate</h4>
-                <div class="amount">₹999</div>
-                <ul>
-                    <li>Complete Social Pack</li>
-                    <li>Priority Queue</li>
-                    <li>Source Files Included</li>
-                </ul>
-                <a href="#order" class="btn-main btn-sec" style="display:block; text-decoration: none;">Choose Plan</a>
+    <section id="services" style="background: var(--bg-alt);">
+        <div class="container">
+            <h2 class="section-title">My Services</h2>
+            <div class="services-grid">
+                <div class="price-card">
+                    <h3>Logo Design</h3>
+                    <div class="price">$99 <span>/starter</span></div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> 3 Unique Concepts</li>
+                        <li><i class="fas fa-check"></i> 48 Hours Delivery</li>
+                        <li><i class="fas fa-check"></i> Vector Source Files</li>
+                        <li><i class="fas fa-check"></i> Unlimited Revisions</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline" style="width: 100%;">Get Started</a>
+                </div>
+                <div class="price-card" style="border-color: var(--primary); transform: scale(1.05); background: white;">
+                    <h3 style="color: var(--primary);">Social Media Kit</h3>
+                    <div class="price">$149 <span>/bundle</span></div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> 10 Custom Posts</li>
+                        <li><i class="fas fa-check"></i> 3 Days Delivery</li>
+                        <li><i class="fas fa-check"></i> Platform Optimization</li>
+                        <li><i class="fas fa-check"></i> Source Files Included</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%;">Popular Choice</a>
+                </div>
+                <div class="price-card">
+                    <h3>YouTube Branding</h3>
+                    <div class="price">$79 <span>/package</span></div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Banner & Avatar</li>
+                        <li><i class="fas fa-check"></i> 24 Hours Delivery</li>
+                        <li><i class="fas fa-check"></i> 3 Custom Thumbnails</li>
+                        <li><i class="fas fa-check"></i> 100% Satisfaction</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline" style="width: 100%;">Get Started</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="section-padding" id="order">
-        <div class="section-title">
-            <h2>Place Your Order</h2>
-        </div>
-        <div class="order-container">
-            <form id="orderForm">
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" placeholder="John Doe" required>
+    <section id="portfolio">
+        <div class="container">
+            <h2 class="section-title">Latest Works</h2>
+            <div class="filter-btns">
+                <button class="filter-btn active" onclick="filterSelection('all')">All</button>
+                <button class="filter-btn" onclick="filterSelection('logo')">Logo</button>
+                <button class="filter-btn" onclick="filterSelection('branding')">Branding</button>
+                <button class="filter-btn" onclick="filterSelection('social')">Social Media</button>
+            </div>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item branding">
+                    <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=500" alt="Branding">
+                    <div class="portfolio-overlay"><span style="color:white">Modern Branding</span></div>
                 </div>
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" placeholder="john@example.com" required>
+                <div class="portfolio-item logo">
+                    <img src="https://images.unsplash.com/photo-1572044162444-ad60f128bdea?auto=format&fit=crop&w=500" alt="Logo">
+                    <div class="portfolio-overlay"><span style="color:white">Minimalist Logo</span></div>
                 </div>
-                <div class="form-group">
-                    <label>WhatsApp Number</label>
-                    <input type="text" placeholder="+91 XXXXX XXXXX" required>
+                <div class="portfolio-item social">
+                    <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=500" alt="Social">
+                    <div class="portfolio-overlay"><span style="color:white">Instagram Layout</span></div>
                 </div>
-                <div class="form-group">
-                    <label>Service Type</label>
-                    <select>
-                        <option>Logo Design</option>
-                        <option>YouTube Thumbnail</option>
-                        <option>Social Media Pack</option>
-                        <option>Banner/Ad</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Project Description</label>
-                    <textarea rows="4" placeholder="Tell us about your vision..."></textarea>
-                </div>
-                <button type="button" onclick="showPayment()" class="btn-main btn-prime" style="width:100%; border:none; cursor:pointer; font-size: 1.1rem; padding: 18px;">
-                    Proceed to Payment
-                </button>
-            </form>
+            </div>
         </div>
     </section>
 
-    <div class="section-padding">
-        <div class="section-title"><h3>Real-Time Collaboration</h3></div>
-        <div class="chat-demo">
-            <div class="chat-header">Project Chat #4029</div>
-            <div class="chat-body">
-                <div class="msg client">Hi, can we make the logo slightly more neon?</div>
-                <div class="msg admin">Absolutely! Adjusting the hex codes now. Sending preview in 5 mins.</div>
-                <div class="msg client">Perfect, thanks!</div>
-            </div>
-            <div style="padding: 10px; background: #000; display:flex; gap: 10px;">
-                <input type="text" placeholder="Type message..." style="padding:8px; font-size: 0.8rem;">
-                <button class="btn-nav" style="margin:0; padding: 8px 15px;">Send</button>
+    <section id="about" style="background: var(--bg-alt);">
+        <div class="container">
+            <div class="contact-wrapper" style="align-items: center;">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500" alt="Designer" style="width: 100%; border-radius: 20px;">
+                </div>
+                <div>
+                    <h2>I'm a Passionate Visual Storyteller</h2>
+                    <p style="margin: 20px 0; color: var(--gray);">With over 5 years of experience in the design industry, I help brands stand out through purposeful and aesthetic design. My approach is simple: clean, functional, and impactful.</p>
+                    <div class="features-list">
+                        <li><i class="fas fa-bolt"></i> Fast turnaround times</li>
+                        <li><i class="fas fa-heart"></i> Detail-oriented workflow</li>
+                        <li><i class="fas fa-comments"></i> Seamless communication</li>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Work Together</h2>
+            <div class="contact-wrapper">
+                <div>
+                    <h3>Contact Information</h3>
+                    <p style="margin: 20px 0; color: var(--gray);">Have a project in mind? Reach out and let's create something amazing.</p>
+                    <p><strong>Email:</strong> hello@digicrafts.com</p>
+                    <a href="https://wa.me/123456789" class="btn whatsapp-btn" style="display: block; width: fit-content; margin-top: 20px;">
+                        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                    </a>
+                </div>
+                <form class="contact-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea rows="5" placeholder="Project Details"></textarea>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
     <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <div class="logo" style="margin-bottom: 20px;">DIGICRAFST</div>
-                <p style="color: var(--text-dim); font-size: 0.9rem;">The future of digital design. Fast, affordable, and premium.</p>
+        <div class="container">
+            <div class="logo">DIGI<span>CRAFTS</span></div>
+            <p style="margin-top: 10px; opacity: 0.7;">© 2026 Digicrafts Design Studio. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-behance"></i></a>
+                <a href="#"><i class="fab fa-dribbble"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
             </div>
-            <div class="footer-col">
-                <h4>Quick Links</h4>
-                <a href="#">About Us</a>
-                <a href="#services">Services</a>
-                <a href="#pricing">Pricing</a>
-                <a href="#order">Order Now</a>
-            </div>
-            <div class="footer-col">
-                <h4>Legal & Policy</h4>
-                <a href="#legal">Privacy Policy</a>
-                <a href="#legal">Terms & Conditions</a>
-                <a href="#legal">Refund Policy</a>
-                <a href="#legal">Order/Bid Policy</a>
-            </div>
-        </div>
-
-        <div id="legal" class="legal-notice">
-            <p><strong>Strict Policies:</strong> 1. Full advance payment is required to initiate any project. 2. Once work has commenced, no refunds will be issued. 3. Delivery timelines vary by package (24h-72h). 4. Maximum of 3 revision cycles for Standard/Basic plans. 5. Anti-Fraud: Any Chargeback attempts without prior communication will result in a permanent ban and legal reporting.</p>
-            <p style="margin-top:10px;">© 2024 Digicrafst. All rights reserved.</p>
         </div>
     </footer>
 
-    <div id="paymentOverlay" class="success-overlay">
-        <div style="text-align:center; background: #111; padding: 50px; border-radius: 20px; border: 1px solid var(--neon-green);">
-            <div style="font-size: 4rem; margin-bottom: 20px;">✅</div>
-            <h2 style="color: var(--neon-green);">Payment Successful!</h2>
-            <p style="color: var(--text-dim); margin: 15px 0;">Our team will contact you via WhatsApp shortly.</p>
-            <button onclick="closePayment()" class="btn-main btn-sec" style="cursor:pointer; border: none;">Back to Home</button>
-        </div>
-    </div>
-
     <script>
-        function showPayment() {
-            // Simulated payment delay
-            document.querySelector('.btn-prime').innerText = "Processing...";
-            setTimeout(() => {
-                document.getElementById('paymentOverlay').style.display = 'flex';
-            }, 1500);
+        // Portfolio Filtering Logic
+        function filterSelection(c) {
+            const items = document.getElementsByClassName("portfolio-item");
+            if (c === "all") c = "";
+            for (let i = 0; i < items.length; i++) {
+                items[i].style.display = "none";
+                if (items[i].className.indexOf(c) > -1) {
+                    items[i].style.display = "block";
+                }
+            }
+            
+            // Update active button
+            const btns = document.getElementsByClassName("filter-btn");
+            for (let i = 0; i < btns.length; i++) {
+                btns[i].classList.remove("active");
+            }
+            event.currentTarget.classList.add("active");
         }
 
-        function closePayment() {
-            document.getElementById('paymentOverlay').style.display = 'none';
-            document.querySelector('.btn-prime').innerText = "Proceed to Payment";
-            window.scrollTo(0, 0);
-        }
-
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+        // Simple Form Submission Alert
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you! Your message has been sent. Digicrafts will contact you soon.');
+            this.reset();
         });
     </script>
 </body>
